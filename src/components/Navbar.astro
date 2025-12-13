@@ -1,0 +1,78 @@
+---
+const menus = [
+  { name: "Beranda", href: "" },
+  { name: "Tentang Kami", href: "" },
+  { name: "Unit Usaha", href: "" },
+  { name: "Pembardayaan", href: "" },
+  { name: "Galeri", href: "" },
+  { name: "Berita", href: "" },
+  { name: "Kontak", href: "" },
+];
+---
+
+<header id="dekstop-menu" class="bg-white py-3 hidden lg:block">
+  <div class="container">
+    <div class="flex justify-between gap-5 items-center">
+      <div class="flex items-center gap-2">
+        <img src="./logo.svg" alt="" />
+        <p class="text-xl font-semibold my-0 hidden lg:block">
+          BUMDes Pondok Kresek
+        </p>
+      </div>
+      <div>
+        <ul class="flex gap-5 items-center">
+          {
+            menus.map((menu) => (
+              <li>
+                <a href={menu.href} class="font-medium">
+                  {menu.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<header
+  id="mobile-menu"
+  class="lg:hidden bg-white py-3"
+  x-data="{ openMenu: false }"
+>
+  <div class="container">
+    <div class="flex justify-between gap-5 items-center">
+      <div>
+        <img src="./logo.svg" alt="" />
+      </div>
+      <div>
+        <button @click="openMenu = !openMenu" class="text-2xl">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+    <div x-show="openMenu" class="relative w-full bg-white py-10" x-transition>
+      <ul class="flex flex-col gap-5">
+        {
+          menus.map((menu) => (
+            <li>
+              <a href={menu.href} class="font-medium">
+                {menu.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* link on hover and active text-secondary */
+  a:hover,
+  a.active {
+    @apply text-secondary transition-colors duration-300;
+  }
+</style>

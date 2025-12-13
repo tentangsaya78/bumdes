@@ -1,0 +1,71 @@
+---
+// Card.astro
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  image?: string;
+}
+
+const { title, description, link, image = "./images/uu-1.png" } = Astro.props;
+---
+
+<a href={link} class="block w-full max-w-[680px] no-underline group">
+  <div
+    class="h-full rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+  >
+    <div
+      class="relative min-h-80 bg-cover bg-center flex items-end p-8"
+      style={`background-image: url(${image})`}
+    >
+      <!-- Overlay Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/50">
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10 text-white max-w-[280px]">
+        <h3 class="text-3xl text-white font-semibold leading-tight mb-3">
+          {title}
+        </h3>
+        <p class="text-base leading-relaxed opacity-95">
+          {description}
+        </p>
+      </div>
+
+      <!-- Icon -->
+      <div class="absolute bottom-6 right-6 w-7 h-7">
+        <i class="bi bi-box-arrow-up-right text-white text-2xl"></i>
+      </div>
+    </div>
+  </div>
+</a>
+
+<!-- Responsive Styles -->
+<style>
+  @media (max-width: 640px) {
+    .h-80 {
+      height: 280px;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.875rem;
+    }
+    .top-6 {
+      top: 1rem;
+    }
+    .right-6 {
+      right: 1rem;
+    }
+    .w-12 {
+      width: 2.5rem;
+    }
+    .h-12 {
+      height: 2.5rem;
+    }
+    .p-8 {
+      padding: 1.5rem;
+    }
+  }
+</style>

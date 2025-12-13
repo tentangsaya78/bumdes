@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+
+
+@theme {
+    --color-primary: #22577a;
+    --color-secondary: #38a3a5;
+
+    --default-font-family: 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Lora', serif;
+
+}
+
+@layer base {
+    body {
+        @apply text-gray-800;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold text-gray-900;
+    }
+
+    p {
+        @apply leading-[1.6] mb-8;
+    }
+    
+}
+
+/* uatkan container center */
+@layer utilities {
+    .container {
+        @apply max-w-6xl mx-auto px-10;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply px-6 py-3 rounded-lg font-medium transition-colors duration-200 max-w-max;
+    }
+
+    .btn-light {
+        @apply bg-white/30 text-white hover:bg-white/70 hover:text-gray-700;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-white hover:bg-primary/70;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary text-white hover:bg-secondary/70;
+    }
+
+    .card {
+        @apply bg-white/30 p-6 rounded-lg shadow-lg;
+    }
+
+
+    .section-title h3{
+        @apply text-3xl lg:text-5xl font-semibold leading-tight;
+    }
+    .section-title p{
+        @apply mb-0;
+    }   
+
+}

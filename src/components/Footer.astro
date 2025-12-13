@@ -1,0 +1,139 @@
+---
+// Footer.astro
+interface Props {
+  siteName?: string;
+  description?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+}
+
+const {
+  siteName = "BUMDes Kampung Kresek",
+  description = "Mengelola potensi desa secara profesional untuk mendukung kesejahteraan masyarakat dan membangun kolaborasi dengan berbagai stakeholder.",
+  address = "Desa Kampung Kresek Kec. Sematu Jaya, Kab. Lamandau",
+  phone = "0812 xxx xxx xxx",
+  email = "namaemail@bumdes.com",
+} = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const links = {
+  main: [
+    { label: "Beranda", href: "/" },
+    { label: "Tentang Kami", href: "/" },
+    { label: "Unit Usaha", href: "/" },
+    { label: "Berita", href: "/" },
+    { label: "Kontak", href: "/" },
+  ],
+  units: [
+    { label: "Perdagangan Desa", href: "/" },
+    { label: "Jasa & Penyewaan", href: "/" },
+    { label: "Pertanian & Peternakan", href: "/" },
+    { label: "UMKM & Kerajinan", href: "/" },
+  ],
+};
+
+const socialMedia = [
+  { icon: "bi-instagram", href: "#", label: "Instagram" },
+  { icon: "bi-facebook", href: "#", label: "Facebook" },
+  { icon: "bi-tiktok", href: "#", label: "TikTok" },
+];
+---
+
+<footer class="bg-slate-900 text-gray-300">
+  <!-- Main Footer Content -->
+  <div class="container mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- About Section -->
+      <div class="lg:col-span-1">
+        <h3 class="text-white text-lg font-semibold mb-4">{siteName}</h3>
+        <p class="text-gray-400 leading-relaxed mb-6">
+          {description}
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div>
+        <h4 class="text-white text-lg font-semibold mb-4">Kontak</h4>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <i class="bi bi-geo-alt text-xl flex-shrink-0 mt-0.5"></i>
+            <span class="text-gray-400">{address}</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="bi bi-telephone text-xl flex-shrink-0"></i>
+            <span class="text-gray-400">{phone}</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="bi bi-envelope text-xl flex-shrink-0"></i>
+            <span class="text-gray-400">{email}</span>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="flex gap-4 mt-6">
+          {
+            socialMedia.map((social) => (
+              <a
+                href={social.href}
+                class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-slate-700 transition-colors"
+                aria-label={social.label}
+              >
+                <i class={`${social.icon} text-xl`} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Links Section -->
+      <div>
+        <h4 class="text-white text-lg font-semibold mb-4">Link</h4>
+        <ul class="space-y-2">
+          {
+            links.main.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Unit Usaha Section -->
+      <div>
+        <h4 class="text-white text-lg font-semibold mb-4">Unit Usaha</h4>
+        <ul class="space-y-2">
+          {
+            links.units.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-slate-800">
+    <div class="container mx-auto px-6 py-3">
+      <p class="text-center text-gray-400 text-sm">
+        © {currentYear}
+        {siteName}. Semua Hak Dilindungi.
+      </p>
+    </div>
+  </div>
+</footer>

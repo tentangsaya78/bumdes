@@ -1,0 +1,41 @@
+---
+// Button.astro
+interface Props {
+  text: string;
+  link: string;
+  icon?: string; // Bootstrap icon class, contoh: "bi-person-walking"
+  variant?: "primary" | "secondary" | "outline" | "dark";
+  size?: "sm" | "md" | "lg";
+}
+
+const { text, link, icon, variant = "primary", size = "md" } = Astro.props;
+
+// Variant classes
+const variants = {
+  primary: "bg-primary text-white hover:bg-primary/70",
+  secondary: "bg-secondary text-white hover:bg-secondary/70",
+  outline:
+    "bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white",
+  dark: "bg-gray-900 text-white hover:bg-gray-700 duration-200",
+};
+
+// Size classes
+const sizes = {
+  sm: "px-4 py-2 text-sm gap-2",
+  md: "px-6 py-3 text-base gap-2.5",
+  lg: "px-8 py-4 text-lg gap-3",
+};
+
+// Icon size classes
+const iconSizes = {
+  sm: "text-base",
+  md: "text-lg",
+  lg: "text-xl",
+};
+---
+
+<a
+  href={link}
+  class={`flex items-center justify-center  w-full md:max-w-max rounded-lg font-medium transition-all duration-200 no-underline ${variants[variant]} ${sizes[size]}`}
+  >{icon && <i class={`bi ${icon} ${iconSizes[size]}`} />}<span>{text}</span></a
+>

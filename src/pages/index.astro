@@ -1,11 +1,191 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import CardBg from "../components/CardBg.astro";
+import NewsCard from "../components/NewsCard.astro";
+import Button from "../components/Button.astro";
+import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const cards = [
+  {
+    title: "Unit Perdagangan dan Retail Desa",
+    description:
+      "Mengelola penyediaan kebutuhan pokok masyarakat desa serta membantu distribusi produk lokal.",
+    link: "#",
+    image: "./images/uu-1.png",
+  },
+  {
+    title: "Unit Pertanian dan Peternakan",
+    description:
+      "Menyediakan layanan sewa alat pertanian, pupuk, pembibitan, serta pemasaran hasil panen petani.",
+    link: "#",
+    image: "./images/uu-2.png",
+  },
+  {
+    title: "Unit Jasa",
+    description:
+      "Mulai dari penyewaan gedung, kendaraan, hingga layanan internet desa yang mendukung aktivitas masyarakat.",
+    link: "#",
+    image: "./images/uu-3.png",
+  },
+  {
+    title: "Unit UMKM & Kerajinan",
+    description:
+      "Pendampingan UMKM, pengolahan produk makanan, minuman, dan kerajinan khas desa.",
+    link: "#",
+    image: "./images/uu-4.png",
+  },
+];
+
+const news = [
+  {
+    title: "Lorem ipsum dolor sit amet",
+    description:
+      "consectetur adipiscing elit. Donec ut elit nec nisi iaculis rhoncus ",
+    link: "#",
+    image: "./images/uu-4.png",
+    date: "2025-12-13",
+  },
+  {
+    title: "Donec eget orci rhoncus, malesuada sapien ",
+    description: "Donec eget orci rhoncus, malesuada sapien ",
+    link: "#",
+    image: "./images/uu-3.png",
+    date: "2025-12-13",
+  },
+  {
+    title: "Fusce scelerisque sem in elit",
+    description: "Donec eget orci rhoncus, malesuada sapien ",
+    link: "#",
+    image: "./images/uu-2.png",
+    date: "2025-12-13",
+  },
+  {
+    title: "Donec eget orci rhoncus, malesuada sapien ",
+    description: "Donec eget orci rhoncus, malesuada sapien ",
+    link: "#",
+    image: "./images/uu-1.png",
+    date: "2025-12-13",
+  },
+  {
+    title: "Donec eget orci rhoncus, malesuada sapien ",
+    description: "Donec eget orci rhoncus, malesuada sapien ",
+    link: "#",
+    image: "./images/uu-4.png",
+    date: "2025-12-13",
+  },
+  {
+    title: "Donec eget orci rhoncus, malesuada sapien ",
+    description: "Donec eget orci rhoncus, malesuada sapien ",
+    link: "#",
+    image: "./images/uu-3.png",
+    date: "2025-12-13",
+  },
+];
+
+const buttons = [
+  {
+    text: "Kegiatan Desa",
+    link: "#",
+    icon: "bi-person-walking",
+    variant: "dark",
+    size: "lg",
+  },
+  {
+    text: "Laporan Tahunan",
+    link: "#",
+    icon: "bi-file-earmark-text-fill",
+    variant: "dark",
+    size: "lg",
+  },
+  {
+    text: "Update Unit Usaha",
+    link: "#",
+    icon: "bi-newspaper",
+    variant: "dark",
+    size: "lg",
+  },
+  {
+    text: "Dokumentasi",
+    link: "#",
+    icon: "bi-images",
+    variant: "dark",
+    size: "lg",
+  },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <Hero />
+  <section class="mb-16 lg:mb-[120px]">
+    <div class="container">
+      <div class="flex flex-wrap gap-8 justify-between">
+        <div class="section-title max-w-80">
+          <p>Sekilas</p>
+          <h3 class="">Tentang Kami</h3>
+        </div>
+        <div class="max-w-[680px]">
+          <p>
+            BUM Desa Pondok Kresek merupakan lembaga usaha yang dibentuk oleh
+            Pemerintah Desa dan masyarakat desa sebagai wadah pengembangan
+            kegiatan ekonomi produktif. Dengan mengelola potensi terbaik desa,
+            kami berkomitmen menjadi lokomotif pemberdayaan dan peningkatan
+            kesejahteraan masyarakat.
+          </p>
+          <p>
+            Sebagai kekuatan ekonomi masyarakat desa yang berorientasi pada
+            pembangunan berkelanjutan. Melalui tata kelola yang baik, kami
+            mengembangkan unit-unit usaha yang memberi manfaat langsung bagi
+            masyarakat dan meningkatkan Pendapatan Asli Desa (PADes).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container flex flex-col gap-20 mb-16 lg:mb-[120px]">
+    <div class="section-title text-center">
+      <p>Perkembangan Usaha dan</p>
+      <h3>Unit Usaha</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {cards.map((card) => <CardBg {...card} />)}
+    </div>
+  </section>
+  <section class="py-20 bg-gray-100">
+    <div class="container flex flex-col gap-20">
+      <div class="section-title text-center">
+        <p>Kegiatan dan Informasi</p>
+        <h3>Terbaru</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {news.map((news) => <NewsCard {...news} />)}
+      </div>
+      <div class="flex flex-wrap gap-8 justify-between">
+        {buttons.map((button) => <Button {...button} />)}
+      </div>
+    </div>
+  </section>
+  <section class="py-16 lg:py-[120px] block">
+    <div class="container">
+      <div class="flex flex-wrap gap-8 lg:gap-10 w-full">
+        <img
+          src="./images/ketua.png"
+          alt=""
+          class="max-w-60 h-auto object-cover object-center"
+        />
+        <div class="max-w-[780px]">
+          <p
+            class="qoute font-serif text-xl lg:text-3xl text-gray-500 font-semibold"
+          >
+            “Kami di BUM Desa Pondok Kresek berkomitmen mengelola potensi desa
+            secara profesional untuk meningkatkan kesejahteraan masyarakat. Mari
+            berkolaborasi membangun ekonomi desa yang berdaya dan
+            berkelanjutan.”
+          </p>
+          <span class="font-semibold">- Ketua BUMDesa Pondok Kresek</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer />
 </Layout>
