@@ -9,12 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@alpinejs/intersect": "^3.15.2",
     "@astrojs/alpinejs": "^0.4.9",
+    "@splidejs/splide": "^4.1.4",
     "@tailwindcss/vite": "^4.1.18",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.2",
     "astro": "^5.16.5",
     "bootstrap-icons": "^1.13.1",
+    "feather-icons": "^4.29.2",
     "tailwindcss": "^4.1.18"
   }
 }

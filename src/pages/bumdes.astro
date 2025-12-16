@@ -5,8 +5,6 @@ import CardBg from "../components/CardBg.astro";
 import NewsCard from "../components/NewsCard.astro";
 import Button from "../components/Button.astro";
 import Footer from "../components/Footer.astro";
-import Slideshow from "../components/Slideshow.astro";
-import Statistik from "../components/Statistik.astro";
 
 const cards = [
   {
@@ -118,56 +116,64 @@ const buttons = [
 ---
 
 <Layout>
-  <section class="">
-    <Slideshow />
-  </section>
-  <section class="py-20 bg-gray-100 mb-16 lg:mb-[120px]">
-    <div class="container flex flex-col gap-20">
-      <div class="section-title text-center">
-        <p>Berita dan Informasi</p>
-        <h3>Terbaru</h3>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {news.map((news) => <NewsCard {...news} />)}
-      </div>
-      <div class="flex justify-center items-center">
-        <Button text="Lihat Semua" link="#" icon="" variant="dark" size="lg" />
-      </div>
-    </div>
-  </section>
+  <Hero />
   <section class="mb-16 lg:mb-[120px]">
     <div class="container">
-      <div class="flex flex-wrap gap-8 lg:gap-10 w-full">
-        <img
-          src="./images/ketua-bumdes-pondok-kresek.webp"
-          alt=""
-          class="max-w-60 w-full h-auto max-h-[326px] object-cover object-top rounded-lg"
-        />
-        <div class="flex flex-col gap-6 max-w-[780px]">
-          <div class="section-title">
-            <p>Sekilas</p>
-            <h3 class="">Bumdes Pondok Kresek</h3>
-          </div>
-          <div class="">
-            <p class="text-2xl font-medium">
-              Desa Pondok Kresek merupakan desa yang memiliki potensi sumber
-              daya alam dan sosial yang terus berkembang.
-            </p>
-            <p>
-              Dalam upaya mewujudkan pembangunan desa yang berkelanjutan, Desa
-              Pondok Kresek terus mendorong pengelolaan potensi lokal secara
-              optimal, transparan, dan partisipatif. Melalui sinergi antara
-              pemerintah desa, Badan Usaha Milik Desa, dan masyarakat, desa ini
-              berkomitmen meningkatkan kualitas pelayanan serta kesejahteraan
-              warga secara berkelanjutan.
-            </p>
-          </div>
+      <div class="flex flex-wrap gap-8 justify-between">
+        <div class="section-title max-w-[400px]">
+          <p>Sekilas</p>
+          <h3 class="">Tentang BUMDes</h3>
+        </div>
+        <div class="max-w-[680px]">
+          <p>
+            BUM Desa Pondok Kresek merupakan lembaga usaha yang dibentuk oleh
+            Pemerintah Desa dan masyarakat desa sebagai wadah pengembangan
+            kegiatan ekonomi produktif. Dengan mengelola potensi terbaik desa,
+            kami berkomitmen menjadi lokomotif pemberdayaan dan peningkatan
+            kesejahteraan masyarakat.
+          </p>
         </div>
       </div>
     </div>
   </section>
+  <section class="container flex flex-col gap-20 mb-16 lg:mb-[120px]">
+    <div class="section-title text-center">
+      <p>Perkembangan Usaha dan</p>
+      <h3>Unit Usaha</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {cards.map((card) => <CardBg {...card} />)}
+    </div>
+  </section>
 
-  <Statistik />
-
+  <section class="py-16 lg:py-[120px] block">
+    <div class="container">
+      <div class="flex flex-wrap gap-8 lg:gap-10 w-full">
+        <img
+          src="./images/ketua.png"
+          alt=""
+          class="max-w-60 w-full h-auto max-h-[300px] object-cover object-top rounded-lg"
+        />
+        <div class="max-w-[780px]">
+          <p
+            class="qoute font-serif text-xl lg:text-3xl text-gray-500 font-semibold"
+          >
+            “Kami di BUM Desa Pondok Kresek berkomitmen mengelola potensi desa
+            secara profesional untuk meningkatkan kesejahteraan masyarakat. Mari
+            berkolaborasi membangun ekonomi desa yang berdaya dan
+            berkelanjutan.”
+          </p>
+          <span class="font-semibold">- Ketua BUMDesa Pondok Kresek</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20 bg-gray-100">
+    <div class="container flex flex-col gap-20">
+      <div class="flex flex-wrap gap-8 justify-between">
+        {buttons.map((button) => <Button {...button} />)}
+      </div>
+    </div>
+  </section>
   <Footer />
 </Layout>

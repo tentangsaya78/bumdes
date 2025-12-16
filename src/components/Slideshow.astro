@@ -1,0 +1,89 @@
+---
+import "@splidejs/splide/css";
+
+const slides = [
+  {
+    image: "./images/slide-1.jpg",
+    title: "Potensi Desa untuk Masa Depan Bersama",
+    description:
+      "Desa Pondok Kresek memiliki kekayaan alam, sumber daya manusia, dan peluang usaha yang terus dikembangkan melalui unit-unit usaha BUMDes.",
+    link: "#",
+  },
+  {
+    image: "./images/slide-3.jpg",
+    title: "Bersama Membangun Desa Mandiri",
+    description:
+      "Mari bersinergi membangun Desa Pondok Kresek melalui kolaborasi, inovasi, dan semangat gotong royong.",
+    link: "#",
+  },
+];
+---
+
+<section>
+  <div class="splide">
+    <div class="splide__track">
+      <div class="splide__list">
+        {
+          slides.map((slide, index) => (
+            <div class="splide__slide w-full min-h-[calc(100vh-73px)] bg-cover bg-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-tr from-black to-transparent opacity-90 z-10" />
+              <img
+                src={slide.image}
+                class="absolute top-0 left-0 inset-0 w-full h-full object-cover duration-500 mx-auto "
+                alt=""
+              />
+              <div class="container flex flex-col justify-center h-full relative z-20">
+                <div class="py-6 text-white max-w-[678px]">
+                  <h2 class="text-3xl lg:text-5xl font-bold mb-2 text-white">
+                    {slide.title}
+                  </h2>
+                  <p class="text-xl">{slide.description}</p>
+                  <a href={slide.link} class="btn btn-light mt-4">
+                    Selanjutnya
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Splide from "@splidejs/splide";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if element exists before mounting to avoid errors on pages without slideshow
+    if (document.querySelector(".splide")) {
+      const splideOptions = {
+        type: "loop",
+        perPage: 1,
+        autoplay: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        interval: 3000,
+        pagination: false,
+        speed: 1500,
+        arrows: true,
+        gap: "0",
+        padding: "0",
+        breakpoints: {
+          640: {
+            arrows: false,
+          },
+        },
+      };
+
+      new Splide(".splide", splideOptions).mount();
+    }
+  });
+</script>
+<style>
+  .splide__slide.is-active img {
+    transform: scale(1.2);
+    transform-origin: center center; /* Memastikan scale dari tengah */
+    transition: transform 10s ease-in-out;
+  }
+</style>

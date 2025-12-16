@@ -1,0 +1,128 @@
+---
+// Data statistik desa
+const stats = [
+  {
+    id: "population",
+    label: "Jumlah Penduduk",
+    value: 8542,
+    suffix: "Jiwa",
+    icon: "bi bi-people-fill",
+  },
+  {
+    id: "area",
+    label: "Luas Desa",
+    value: 245,
+    suffix: "Ha",
+    icon: "bi bi-geo-alt-fill",
+  },
+  {
+    id: "rw",
+    label: "Jumlah RW",
+    value: 12,
+    suffix: "RW",
+    icon: "bi bi-house-fill",
+  },
+  {
+    id: "rt",
+    label: "Jumlah RT",
+    value: 48,
+    suffix: "RT",
+    icon: "bi bi-house-fill",
+  },
+];
+---
+
+<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">
+        Statistik Desa
+      </h2>
+      <p class="text-gray-600 text-lg">Data dan informasi terkini desa kami</p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      x-data="statsCounter()"
+    >
+      {
+        stats.map((stat) => (
+          <div
+            class="bg-white rounded-lg p-8 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            x-intersect.once={`startCounter('${stat.id}', ${stat.value})`}
+          >
+            <i class={`${stat.icon} text-5xl mb-4 text-primary`} />
+            <div class="text-4xl font-bold text-primary mb-2">
+              <span x-text={`counters.${stat.id}`}>0</span>
+              <span class="text-2xl ml-1">{stat.suffix}</span>
+            </div>
+            <p class="text-gray-600 font-medium text-lg">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import Alpine from "alpinejs";
+  import intersect from "@alpinejs/intersect";
+
+  // Register intersect plugin
+  Alpine.plugin(intersect);
+
+  // Define the stats counter component
+  Alpine.data("statsCounter", () => ({
+    counters: {
+      population: 0,
+      area: 0,
+      rw: 0,
+      rt: 0,
+    },
+    animating: {
+      population: false,
+      area: false,
+      rw: false,
+      rt: false,
+    },
+
+    startCounter(id, target) {
+      // Prevent multiple animations
+      if (this.animating[id]) return;
+      this.animating[id] = true;
+
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const increment = target / steps;
+      const stepDuration = duration / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          this.counters[id] = target;
+          clearInterval(timer);
+        } else {
+          this.counters[id] = Math.floor(current);
+        }
+      }, stepDuration);
+    },
+  }));
+
+  // Start Alpine
+  Alpine.start();
+</script>
+
+<style>
+  /* Fade in animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
