@@ -131,7 +131,7 @@ const buttons = [
         {news.map((news) => <NewsCard {...news} />)}
       </div>
       <div class="flex justify-center items-center">
-        <Button text="Lihat Semua" link="#" icon="" variant="dark" size="lg" />
+        <Button text="Lihat Semua" link="#" icon="" variant="dark" size="md" />
       </div>
     </div>
   </section>
@@ -146,10 +146,10 @@ const buttons = [
         <div class="flex flex-col gap-6 max-w-[780px]">
           <div class="section-title">
             <p>Sekilas</p>
-            <h3 class="">Bumdes Pondok Kresek</h3>
+            <h3 class="">Desa Pondok Kresek</h3>
           </div>
           <div class="">
-            <p class="text-2xl font-medium">
+            <p class="text-xl lg:text-2xl font-medium">
               Desa Pondok Kresek merupakan desa yang memiliki potensi sumber
               daya alam dan sosial yang terus berkembang.
             </p>
@@ -161,12 +161,20 @@ const buttons = [
               berkomitmen meningkatkan kualitas pelayanan serta kesejahteraan
               warga secara berkelanjutan.
             </p>
+            <div class="flex justify-end w-full">
+              <Button
+                text="Selengkapnya"
+                link="#"
+                icon=""
+                variant="dark"
+                size="md"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <Statistik />
 
   <Footer />
